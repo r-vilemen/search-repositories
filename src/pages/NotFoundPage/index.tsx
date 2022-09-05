@@ -7,7 +7,7 @@ const NotFoundPage: React.FC = () => {
     <Container>
       <Content>
         <p>404 - Página não encontrada</p>
-        <Link to="/"> Ir para página inicial</Link>
+        <Link to="/">Ir para página inicial</Link>
       </Content>
     </Container>
   );
