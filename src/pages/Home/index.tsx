@@ -26,7 +26,7 @@ export const Home = () => {
           nameRepositories.push(repository.name)
         );
         localStorage.setItem(
-          "repositoriesName",
+          "nameRepositories",
           JSON.stringify(nameRepositories)
         );
         setError(false);
