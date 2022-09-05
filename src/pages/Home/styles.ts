@@ -23,6 +23,7 @@ export const SearchGroup = styled.div`
   flex-direction: row;
   margin-top: 1rem;
   flex-wrap: wrap;
+  padding: 0 1rem;
 `;
 
 export const SearchProfileGitHub = styled.input`
@@ -37,7 +38,7 @@ export const SearchProfileGitHub = styled.input`
 `;
 
 export const SearchBtn = styled.button`
-  width: 4rem;
+  width: 5rem;
   height: 2rem;
   color: #ffff;
   background-color: #ff7043;
