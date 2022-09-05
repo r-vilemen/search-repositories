@@ -48,3 +48,9 @@ export const SearchBtn = styled.button`
     background-color: #ff8942;
   }
 `;
+
+export const MsgError = styled.div`
+  font-size: 1rem;
+  color: red;
+  margin-top: 0.5rem;
+`;

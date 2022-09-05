@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
+  MsgError,
   SearchBtn,
   SearchGroup,
   SearchProfileGitHub,
@@ -50,6 +51,7 @@ export const Home = () => {
           Pesquisar
         </SearchBtn>
       </SearchGroup>
+      {error && <MsgError>Usuário não encontrado</MsgError>}
     </Container>
   );
 };
