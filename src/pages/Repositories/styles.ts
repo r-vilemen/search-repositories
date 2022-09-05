@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -18,7 +19,7 @@ export const Title = styled.h1`
 `;
 
 export const ModalList = styled.div`
-  width: 70vw;
+  width: 80vw;
   height: 70%;
   margin-top: 1rem;
   background-color: transparent;
@@ -31,4 +32,24 @@ export const RepositoriesList = styled.li`
   list-style: none;
   text-align: center;
   margin-top: 1rem;
+`;
+
+export const LinktoHome = styled(Link)`
+  width: 5rem;
+  background: linear-gradient(
+    178.8deg,
+    #ff7043 47.41%,
+    #cc5935 65.18%,
+    #994227 90.84%
+  );
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffff;
+  height: 2rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 4s;
 `;

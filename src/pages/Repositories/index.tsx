@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, ModalList, RepositoriesList, Title } from "./styles";
+import {
+  Container,
+  LinktoHome,
+  ModalList,
+  RepositoriesList,
+  Title,
+} from "./styles";
 
 export const Repositories = () => {
   const navigate = useNavigate();
@@ -27,6 +33,8 @@ export const Repositories = () => {
           })}
         </RepositoriesList>
       </ModalList>
+
+      <LinktoHome to="/">Voltar</LinktoHome>
     </Container>
   );
 };
