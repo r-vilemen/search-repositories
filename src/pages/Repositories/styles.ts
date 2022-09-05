@@ -23,6 +23,7 @@ export const ModalList = styled.div`
   margin-top: 1rem;
   background-color: transparent;
   border: 2px solid #ff7043;
+  overflow-y: scroll;
 `;
 
 export const RepositoriesList = styled.li`

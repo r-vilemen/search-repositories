@@ -38,4 +38,28 @@ button {
     cursor : pointer;
 }
 
+/* add custom scrollbar in global project 👇🏼👇🏼👻 */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #282a36;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(178.8deg, #ff7043 47.41%, #cc5935 65.18%, #994227 90.84%);
+  border-radius: 20px;
+}
+
+/* Cor do Texto selecionado 👇🏼👇🏼👻 */
+::-moz-selection {
+  color: #ffff;
+  background: #ff7043;
+}
+
+::selection {
+  color: #ffff;
+  background: #ff7043;
+}
 `;
