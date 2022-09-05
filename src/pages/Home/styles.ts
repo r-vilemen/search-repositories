@@ -30,11 +30,14 @@ export const SearchProfileGitHub = styled.input`
   width: 12rem;
   height: 2rem;
   color: #ffff;
-  padding: 0 0.5rem;
+  padding-left: 0.5rem;
   border: 2px solid #ff7043;
   border-radius: 6px;
   background-color: transparent;
   margin-right: 1rem;
+  ::placeholder {
+    color: #ff7043;
+  }
 `;
 
 export const SearchBtn = styled.button`
