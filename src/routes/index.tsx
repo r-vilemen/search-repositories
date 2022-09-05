@@ -1,13 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { Home } from "../pages/Home";
-import NotFoundPage from "../pages/NotFoundPage";
+import { Repositories } from "../pages/Repositories";
 
 export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/repositories" element={<Repositories />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
