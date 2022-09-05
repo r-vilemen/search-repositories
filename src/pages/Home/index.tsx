@@ -43,6 +43,12 @@ export const Home = () => {
       <Title>Lista de Reposiórios:</Title>
       <SearchGroup>
         <SearchProfileGitHub
+          onKeyPress={(ev) => {
+            if (ev.key === "Enter" || ev.key === "OK") {
+              ev.preventDefault();
+              searchHandle();
+            }
+          }}
           placeholder="Digite o usuário do Github"
           value={user}
           onChange={(e) => setUser(e.target.value)}
