@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../components/Footer";
 import {
   Container,
   MsgError,
@@ -60,6 +61,7 @@ export const Home = () => {
         </SearchBtn>
       </SearchGroup>
       {error && <MsgError>Usuário não encontrado</MsgError>}
+      <Footer />
     </Container>
   );
 };
