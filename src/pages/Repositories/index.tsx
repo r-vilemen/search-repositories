@@ -11,15 +11,16 @@ import {
 export const Repositories = () => {
   const navigate = useNavigate();
   const [repositories, setRepositories] = useState<any>([]);
+  const urlTest = "https://www.google.com";
 
   useEffect(() => {
     let nameRepositories = localStorage.getItem("nameRepositories");
+
     if (nameRepositories !== null) {
       nameRepositories = JSON.parse(nameRepositories);
       setRepositories(nameRepositories);
       localStorage.clear();
     } else {
-      // console.log("voltou");
       navigate("/");
     }
   }, []);
@@ -29,7 +30,13 @@ export const Repositories = () => {
       <ModalList>
         <RepositoriesList>
           {repositories.map((repository: string) => {
-            return <RepositoriesList>{repository}</RepositoriesList>;
+            return (
+              <RepositoriesList
+                onClick={() => window.open(urlTest, "_blank")?.focus}
+              >
+                {repository}
+              </RepositoriesList>
+            );
           })}
         </RepositoriesList>
       </ModalList>
