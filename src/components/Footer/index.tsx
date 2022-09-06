@@ -2,8 +2,8 @@ import React from "react";
 import { Container, CopyrightText, LinkToLinkedin } from "./styles";
 
 export const Footer = () => {
-  const currentYear = new Date();
-  const year = currentYear.getFullYear();
+  // const currentYear = new Date();
+  // const year = currentYear.getFullYear();
   const LinkedinURL = "https://linkedin.com/in/rodrigo-vilemen/";
 
   return (
