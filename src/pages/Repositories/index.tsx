@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../components/Footer";
 import {
   Container,
   LinktoHome,
@@ -31,7 +32,7 @@ export const Repositories = () => {
       <Title>Repositórios:</Title>
       <SearchInput
         type="text"
-        placeholder="Repositório"
+        placeholder="Pesquise aqui"
         onChange={(e) => {
           setSearch(e.target.value);
         }}
@@ -63,6 +64,7 @@ export const Repositories = () => {
       <LinktoHome onClick={() => localStorage.clear()} to="/">
         Voltar
       </LinktoHome>
+      <Footer />
     </Container>
   );
 };

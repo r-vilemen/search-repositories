@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,6 +25,7 @@ export const ModalList = styled.div`
   margin-top: 1rem;
   background-color: transparent;
   border: 2px solid #ff7043;
+  border-radius: 4px;
   overflow-y: scroll;
 `;
 
