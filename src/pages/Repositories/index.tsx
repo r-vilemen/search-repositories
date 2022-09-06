@@ -11,7 +11,7 @@ import {
 export const Repositories = () => {
   const navigate = useNavigate();
   const [repositories, setRepositories] = useState<any>([]);
-  const urlTest = "https://www.google.com";
+  const urlTest = "https://github.com/";
 
   useEffect(() => {
     let nameRepositories = localStorage.getItem("nameRepositories");
@@ -19,9 +19,9 @@ export const Repositories = () => {
     if (nameRepositories !== null) {
       nameRepositories = JSON.parse(nameRepositories);
       setRepositories(nameRepositories);
-      localStorage.clear();
     } else {
       navigate("/");
+      localStorage.clear();
     }
   }, []);
   return (
@@ -41,7 +41,9 @@ export const Repositories = () => {
         </RepositoriesList>
       </ModalList>
 
-      <LinktoHome to="/">Voltar</LinktoHome>
+      <LinktoHome onClick={() => localStorage.clear()} to="/">
+        Voltar
+      </LinktoHome>
     </Container>
   );
 };

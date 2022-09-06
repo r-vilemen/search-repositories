@@ -33,7 +33,8 @@ export const Home = () => {
         navigate("/repositories");
         console.log(nameRepositories);
       })
-      .catch((error) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .catch((error: Error) => {
         setError(true);
       });
   }
@@ -43,6 +44,7 @@ export const Home = () => {
       <Title>Lista de Reposiórios:</Title>
       <SearchGroup>
         <SearchProfileGitHub
+          maxLength={64}
           onKeyPress={(ev) => {
             if (ev.key === "Enter" || ev.key === "OK") {
               ev.preventDefault();
