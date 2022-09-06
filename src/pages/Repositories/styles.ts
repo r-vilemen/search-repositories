@@ -53,3 +53,18 @@ export const LinktoHome = styled(Link)`
   align-items: center;
   transition: 4s;
 `;
+
+export const SearchInput = styled.input`
+  width: 9rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 2px solid #ff7043;
+  border-radius: 6px;
+  align-self: flex-end;
+  margin-right: 10vw;
+  padding: 0 0.5rem;
+  color: #ffff;
+  ::placeholder {
+    color: #ff7043;
+  }
+`;
