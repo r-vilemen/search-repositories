@@ -5,12 +5,14 @@ import {
   LinktoHome,
   ModalList,
   RepositoriesList,
+  SearchInput,
   Title,
 } from "./styles";
 
 export const Repositories = () => {
   const navigate = useNavigate();
   const [repositories, setRepositories] = useState<any>([]);
+  const [search, setSearch] = useState<string>("");
   const urlTest = "https://github.com/";
 
   useEffect(() => {
@@ -27,17 +29,34 @@ export const Repositories = () => {
   return (
     <Container>
       <Title>Repositórios:</Title>
+      <SearchInput
+        type="text"
+        placeholder="Repositório"
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      />
       <ModalList>
         <RepositoriesList>
-          {repositories.map((repository: string) => {
-            return (
-              <RepositoriesList
-                onClick={() => window.open(urlTest, "_blank")?.focus}
-              >
-                {repository}
-              </RepositoriesList>
-            );
-          })}
+          {repositories
+            // eslint-disable-next-line array-callback-return, consistent-return
+            .filter((val: string) => {
+              if (search === "") {
+                return val;
+              }
+              if (val.toLowerCase().includes(search.toLowerCase())) {
+                return val;
+              }
+            })
+            .map((repository: string) => {
+              return (
+                <RepositoriesList
+                  onClick={() => window.open(urlTest, "_blank")?.focus}
+                >
+                  {repository}
+                </RepositoriesList>
+              );
+            })}
         </RepositoriesList>
       </ModalList>
 
