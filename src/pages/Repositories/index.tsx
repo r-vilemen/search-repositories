@@ -12,6 +12,7 @@ import {
 
 export const Repositories = () => {
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [repositories, setRepositories] = useState<any>([]);
   const [search, setSearch] = useState<string>("");
   const urlTest = "https://github.com/";
