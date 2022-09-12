@@ -42,7 +42,7 @@ export const Home = () => {
 
   return (
     <Container>
-      <Title>Lista de Reposiórios:</Title>
+      <Title>Lista de Repositórios:</Title>
       <SearchGroup>
         <SearchProfileGitHub
           maxLength={64}
