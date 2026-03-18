@@ -2,134 +2,31 @@
 
 ## Stack Atual do Projeto
 
-- React 18.2 + TypeScript
-- React Router DOM v6
+- React 18 + TypeScript
+- React Router DOM v7
 - Styled Components
-- Axios
-- ESLint + Prettier (Airbnb)
-- react-scripts (CRA)
+- Vite (build tool)
+- Biome (lint + format)
 
 ---
 
-## Recomendações de Melhorias
+## Tecnologias e Bibliotecas
 
-### 1. Migração de Build Tool
+### Gerenciamento de Estado
 
-**Problema:** O `react-scripts` (CRA) está depreciado e é lento.
+- **Zustand** - API simples e minimalista, com suporte a persistência
 
-**Solução:** Migrar para **Vite**
+### Validação de Tipos
 
-- Build 10x mais rápido
-- Hot Module Replacement (HMR) instantâneo -轻量 e moderno
+- **Zod** - Validação de schemas e inferência de tipos TypeScript
 
-**Status:** ✅ Implementado
+### Boas Práticas Implementadas
 
----
-
-### 2. Gerenciamento de Estado
-
-**Problema:** Uso de `localStorage` + `useState` disperso no código.
-
-**Solução:** Usar **Zustand**
-
-- API simples e minimalista
-- Sem boilerplate como Redux
-- Suporte a TypeScript nativo
-- Persistência integrada
-
-**Status:** ✅ Implementado
-
----
-
-### 3. Validação de Dados
-
-**Problema:** Tipos `any` usados no código, sem validação de API.
-
-**Solução:** Usar **Zod**
-
-- Validação de schemas em runtime
-- Inferência de tipos TypeScript
-- Mensagens de erro customizáveis
-
-**Status:** ✅ Implementado
-
----
-
-### 4. Linting e Formatação
-
-**Problema:** ESLint + Prettier = 2 ferramentas lentas.
-
-**Solução:** Usar **Biome**
-
-- Uma única ferramenta para lint e format
-- 10-100x mais rápido
-- Configuração minimalista
-- Compatível com Prettier
-
-**Status:** ✅ Implementado
-
----
-
-### 5. Gestão de API
-
-**Problema:** Axios + localStorage para cache.
-
-**Solução:** Usar **React Query** (@tanstack/react-query)
-
-- Cache automático de requisições
-- Loading/error states prontos
-- Retry automático
-- Suporte a server state
-
----
-
-### 6. TypeScript
-
-**Melhorias:**
-
-- Substituir tipos `any` por tipos específicos
-- Adicionar `noImplicitAny: true` no tsconfig
-- Criar tipos para API responses
-
-**Status:** ✅ Implementado
-
----
-
-### 7. Error Handling
-
-**Problema:** Sem tratamento centralized de erros.
-
-**Solução:** Implementar **Error Boundary**
-
-- Captura erros de componentes React
-- Feedback visual amigável
-- Previne crash da aplicação
-
-**Status:** ✅ Implementado
-
----
-
-### 8. Performance
-
-**Melhorias:**
-
-- Lazy loading de rotas com `React.lazy`
-- `React.memo` em componentes puros
-- Memoização de callbacks com `useCallback`
-
-**Status:** ✅ Implementado
-
----
-
-### 9. Código Limpo
-
-**Melhorias:**
-
-- Remover `console.log`
-- Extrair lógica de API para hooks customizados
-- Componentizar código repetido
-
-**Status:** ✅ Implementado
+1. **Error Boundary** - Tratamento centralizado de erros
+2. **Lazy Loading** - Carregamento sob demanda das rotas
+3. **Debounce** - Otimização de requisições na busca de sugestões
+4. **TypeScript Estrito** - Tipos específicos, sem uso de `any`
+5. **Clean Code** - Código limpo sem console.log
 
 ---
 
@@ -154,25 +51,6 @@ npm run format
 
 ---
 
-## Estrura de Arquivos Sugerida
+## Deploy
 
-```
-src/
-├── components/
-│   ├── Footer/
-│   └── ErrorBoundary/
-├── hooks/
-│   └── useGitHub.ts
-├── stores/
-│   └── useRepositoryStore.ts
-├── types/
-│   └── github.ts
-├── pages/
-│   ├── Home/
-│   └── Repositories/
-├── styles/
-│   ├── theme.ts
-│   └── global.ts
-├── App.tsx
-└── main.tsx
-```
+O projeto está disponível em: https://search-repositories.vercel.app/
