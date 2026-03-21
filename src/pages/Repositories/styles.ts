@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const Header = styled.header`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+`;
+
 export const Container = styled.div`
   width: 100%;
-  min-height: 100%;
-  background-color: #282a36;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +20,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #ffff;
+  color: ${({ theme }) => theme.text.title};
   -webkit-user-select: none;
   user-select: none;
 `;
@@ -37,8 +44,8 @@ export const RepositoryGrid = styled.div`
 `;
 
 export const Card = styled.div`
-  background-color: #212529;
-  border: 1px solid #343a40;
+  background-color: ${({ theme }) => theme.colors.card};
+  border: 1px solid ${({ theme }) => theme.colors.shapeSecondary};
   border-radius: 8px;
   padding: 1rem;
   cursor: pointer;
@@ -49,7 +56,7 @@ export const Card = styled.div`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: ${({ theme }) => theme.shadow.card};
     border-color: #ff7043;
   }
 `;
@@ -72,12 +79,12 @@ export const CardTitle = styled.h3`
 export const CardLanguage = styled.span`
   display: flex;
   align-items: center;
-  color: #ced4da;
+  color: ${({ theme }) => theme.text.input};
   font-size: 0.85rem;
 `;
 
 export const CardDescription = styled.p`
-  color: #878a99;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 0.9rem;
   margin-top: 0.75rem;
   line-height: 1.4;
@@ -111,12 +118,12 @@ export const SearchInput = styled.input`
   width: 100%;
   max-width: 300px;
   height: 2rem;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.card};
   border: 2px solid #ff7043;
   border-radius: 6px;
   margin-top: 1rem;
   padding: 0 0.75rem;
-  color: #ffff;
+  color: ${({ theme }) => theme.text.default};
   font-size: 0.9rem;
 
   ::placeholder {
@@ -130,7 +137,7 @@ export const SearchInput = styled.input`
 `;
 
 export const EmptyText = styled.p`
-  color: #878a99;
+  color: ${({ theme }) => theme.colors.secondary};
   text-align: center;
   margin-top: 2rem;
   font-size: 1rem;

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
+import { ThemeToggle } from "../../components/ThemeToggle";
+import { getLanguageColor } from "../../constants/languageColors";
 import { useRepositoryStore } from "../../stores/useRepositoryStore";
 import { GitHubRepository } from "../../types/github";
 import {
@@ -11,37 +13,13 @@ import {
   CardTitle,
   Container,
   EmptyText,
+  Header,
   LinktoHome,
   ModalList,
   RepositoryGrid,
   SearchInput,
   Title,
 } from "./styles";
-
-const LANGUAGE_COLORS: Record<string, string> = {
-  JavaScript: "#f1e05a",
-  TypeScript: "#3178c6",
-  Python: "#3572A5",
-  Java: "#b07219",
-  "C++": "#f34b7d",
-  C: "#555555",
-  "C#": "#178600",
-  Ruby: "#701516",
-  Go: "#00ADD8",
-  Rust: "#dea584",
-  PHP: "#4F5D95",
-  Swift: "#F05138",
-  Kotlin: "#A97BFF",
-  Dart: "#00B4AB",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
-  Shell: "#89e051",
-};
-
-function getLanguageColor(language: string | null): string {
-  if (!language) return "#878a99";
-  return LANGUAGE_COLORS[language] || "#878a99";
-}
 
 export const Repositories = () => {
   const navigate = useNavigate();
@@ -68,6 +46,9 @@ export const Repositories = () => {
 
   return (
     <Container>
+      <Header>
+        <ThemeToggle />
+      </Header>
       <Title>Repositórios:</Title>
       <SearchInput
         type="text"
