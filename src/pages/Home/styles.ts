@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
+export const Header = styled.header`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+`;
+
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: #282a36;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #ffff;
+  color: ${({ theme }) => theme.text.title};
   padding: 0 1rem;
 `;
 
@@ -35,11 +42,11 @@ export const SearchInputWrapper = styled.div`
 export const SearchProfileGitHub = styled.input`
   width: 12rem;
   height: 2rem;
-  color: #ffff;
+  color: ${({ theme }) => theme.text.default};
   padding-left: 0.5rem;
   border: 2px solid #ff7043;
   border-radius: 6px;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.card};
   ::placeholder {
     color: #ff7043;
   }
@@ -54,7 +61,7 @@ export const SuggestionsContainer = styled.div`
   top: 100%;
   left: 0;
   right: 0;
-  background-color: #212529;
+  background-color: ${({ theme }) => theme.colors.card};
   border: 2px solid #ff7043;
   border-top: none;
   border-radius: 0 0 6px 6px;
@@ -71,7 +78,7 @@ export const SuggestionItem = styled.div`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #292e32;
+    background-color: ${({ theme }) => theme.colors.shapeSecondary};
   }
 `;
 
@@ -83,14 +90,14 @@ export const SuggestionAvatar = styled.img`
 `;
 
 export const SuggestionName = styled.span`
-  color: #ffff;
+  color: ${({ theme }) => theme.text.default};
   font-size: 0.9rem;
 `;
 
 export const SearchBtn = styled.button`
   width: 5rem;
   height: 2rem;
-  color: #ffff;
+  color: #fff;
   background-color: #ff7043;
   border-radius: 6px;
   border: 1px solid #ff7043;
@@ -111,6 +118,6 @@ export const SearchBtn = styled.button`
 
 export const ErrorText = styled.div`
   font-size: 1rem;
-  color: red;
+  color: ${({ theme }) => theme.colors.alert};
   margin-top: 0.5rem;
 `;

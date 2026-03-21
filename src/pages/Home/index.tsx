@@ -1,50 +1,47 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
+import { ThemeToggle } from "../../components/ThemeToggle";
+import { useDebounce } from "../../hooks/useDebounce";
+import { useGitHubRepositories } from "../../hooks/useGitHub";
+import { useGitHubUsers } from "../../hooks/useGitHubUsers";
 import { useRepositoryStore } from "../../stores/useRepositoryStore";
 import { GitHubUser } from "../../types/github";
 import {
   Container,
   ErrorText,
+  Header,
   SearchBtn,
   SearchGroup,
   SearchInputWrapper,
   SearchProfileGitHub,
-  SuggestionsContainer,
-  SuggestionItem,
   SuggestionAvatar,
+  SuggestionItem,
   SuggestionName,
+  SuggestionsContainer,
   Title,
 } from "./styles";
 
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-}
-
 export const Home = () => {
   const [username, setUsername] = useState("");
-  const [suggestions, setSuggestions] = useState<GitHubUser[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [suggestionsLoading, setSuggestionsLoading] = useState(false);
   const navigate = useNavigate();
   const setRepositories = useRepositoryStore((state) => state.setRepositories);
   const setStoreUsername = useRepositoryStore((state) => state.setUsername);
   const debouncedUsername = useDebounce(username, 300);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const {
+    data: suggestions = [],
+    isLoading: suggestionsLoading,
+    isError: suggestionsError,
+  } = useGitHubUsers(debouncedUsername);
+
+  const {
+    isLoading: reposLoading,
+    isError: reposError,
+    refetch,
+  } = useGitHubRepositories(username);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,60 +60,22 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (debouncedUsername.trim().length < 2) {
-        setSuggestions([]);
-        return;
-      }
-
-      setSuggestionsLoading(true);
-      try {
-        const response = await fetch(
-          `https://api.github.com/search/users?q=${debouncedUsername}&per_page=10`,
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          setSuggestions(data.items || []);
-        } else {
-          setSuggestions([]);
-        }
-      } catch {
-        setSuggestions([]);
-      } finally {
-        setSuggestionsLoading(false);
-      }
-    };
-
-    fetchSuggestions();
-  }, [debouncedUsername]);
+    if (reposError) {
+      navigate("/");
+    }
+  }, [reposError, navigate]);
 
   const searchHandle = async (user?: string) => {
     const searchUsername = user || username;
     if (!searchUsername.trim()) return;
 
-    setLoading(true);
-    setError(false);
     setShowSuggestions(false);
 
-    try {
-      const response = await fetch(
-        `https://api.github.com/users/${searchUsername}/repos`,
-      );
-
-      if (!response.ok) {
-        throw new Error("User not found");
-      }
-
-      const data = await response.json();
-
+    const { data } = await refetch();
+    if (data) {
       setRepositories(data);
       setStoreUsername(searchUsername);
       navigate("/repositories");
-    } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -134,6 +93,9 @@ export const Home = () => {
 
   return (
     <Container>
+      <Header>
+        <ThemeToggle />
+      </Header>
       <Title>Lista de Repositórios:</Title>
       <SearchGroup ref={wrapperRef}>
         <SearchInputWrapper>
@@ -144,7 +106,6 @@ export const Home = () => {
             value={username}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUsername(e.target.value);
-              setError(false);
               setShowSuggestions(true);
             }}
             onFocus={() => setShowSuggestions(true)}
@@ -157,7 +118,7 @@ export const Home = () => {
               <SuggestionsContainer>
                 <SuggestionItem>Carregando...</SuggestionItem>
               </SuggestionsContainer>
-            ) : suggestions.length > 0 ? (
+            ) : suggestionsError ? null : suggestions.length > 0 ? (
               <SuggestionsContainer>
                 {suggestions.map((user) => (
                   <SuggestionItem
@@ -174,12 +135,12 @@ export const Home = () => {
         <SearchBtn
           type="button"
           onClick={() => searchHandle()}
-          disabled={!username.trim() || loading}
+          disabled={!username.trim() || reposLoading}
         >
-          {loading ? "Buscando..." : "Pesquisar"}
+          {reposLoading ? "Buscando..." : "Pesquisar"}
         </SearchBtn>
       </SearchGroup>
-      {error && <ErrorText>Usuário não encontrado</ErrorText>}
+      {reposError && <ErrorText>Usuário não encontrado</ErrorText>}
       <Footer />
     </Container>
   );
