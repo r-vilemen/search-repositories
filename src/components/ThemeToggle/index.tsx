@@ -1,3 +1,7 @@
+import {
+  ThemeAnimationType,
+  useModeAnimation,
+} from "react-theme-switch-animation";
 import styled from "styled-components";
 import { useThemeStore } from "../../stores/useThemeStore";
 
@@ -13,6 +17,8 @@ const ToggleButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   color: ${({ theme }) => theme.text.default};
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     background: ${({ theme }) => theme.colors.shapeSecondary};
@@ -67,19 +73,26 @@ const MoonIcon = () => (
 );
 
 export function ThemeToggle() {
-  const { theme, toggleTheme } = useThemeStore();
+  const { theme, setTheme } = useThemeStore();
+  const { ref, toggleSwitchTheme, isDarkMode } = useModeAnimation({
+    animationType: ThemeAnimationType.CIRCLE,
+    duration: 1400,
+    easing: "cubic-bezier(0.4,0,0.2,1)", // ease-in-out mais suave
+    globalClassName: "dark",
+    isDarkMode: theme === "dark",
+    onDarkModeChange: (isDark) => setTheme(isDark ? "dark" : "light"),
+  });
 
   return (
     <ToggleButton
-      onClick={toggleTheme}
+      ref={ref}
+      onClick={toggleSwitchTheme}
       aria-label={
-        theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"
+        isDarkMode ? "Mudar para tema claro" : "Mudar para tema escuro"
       }
-      title={
-        theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"
-      }
+      title={isDarkMode ? "Mudar para tema claro" : "Mudar para tema escuro"}
     >
-      {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+      {isDarkMode ? <SunIcon /> : <MoonIcon />}
     </ToggleButton>
   );
 }
