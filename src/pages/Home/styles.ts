@@ -70,12 +70,15 @@ export const SuggestionsContainer = styled.div`
   z-index: 1000;
 `;
 
-export const SuggestionItem = styled.div`
+export const SuggestionItem = styled.div<{ selected?: boolean }>`
   display: flex;
   align-items: center;
   padding: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, outline 0.2s;
+  background-color: ${({ selected, theme }) =>
+    selected ? theme.colors.shapeSecondary : "inherit"};
+  outline: ${({ selected }) => (selected ? "2px solid #FF7043" : "none")};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.shapeSecondary};
