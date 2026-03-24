@@ -15,11 +15,14 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 `;
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.text.title};
   padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
 `;
 
 export const SearchGroup = styled.div`
@@ -28,7 +31,6 @@ export const SearchGroup = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: row;
-  margin-top: 1rem;
   flex-wrap: wrap;
   padding: 0 1rem;
   position: relative;

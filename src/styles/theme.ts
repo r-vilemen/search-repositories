@@ -16,6 +16,7 @@ export interface Theme {
     input: string;
     default: string;
     title: string;
+    accent: string;
   };
   shadow: {
     btn: string;
@@ -48,6 +49,7 @@ export const darkTheme: Theme = {
     input: "#CED4DA",
     default: "#fff",
     title: "#fff",
+    accent: "#ff7043",
   },
   shadow: {
     btn: "0px 3px 4px 1px rgba(0, 0, 0, 0.3)",
@@ -80,6 +82,7 @@ export const lightTheme: Theme = {
     input: "#212529",
     default: "#212529",
     title: "#212529",
+    accent: "#ff7043",
   },
   shadow: {
     btn: "0px 3px 4px 1px rgba(0, 0, 0, 0.15)",

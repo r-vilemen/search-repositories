@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
+import { ProjectTitle } from "../../components/ProjectTitle";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGitHubRepositories } from "../../hooks/useGitHub";
@@ -96,6 +97,7 @@ export const Home = () => {
       <Header>
         <ThemeToggle />
       </Header>
+      <ProjectTitle />
       <Title>Lista de Repositórios:</Title>
       <SearchGroup ref={wrapperRef}>
         <SearchInputWrapper>
